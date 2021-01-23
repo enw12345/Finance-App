@@ -1,0 +1,10 @@
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\bin\Debug\Finance App.exe.config
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\bin\Debug\Finance App.exe
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\bin\Debug\Finance App.pdb
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance App.csprojAssemblyReference.cache
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance_App.Form1.resources
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance_App.Properties.Resources.resources
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance App.csproj.GenerateResource.cache
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance App.csproj.CoreCompileInputs.cache
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance App.exe
+C:\Users\Evan\Documents\Finance App Visual Studio\Finance App\obj\Debug\Finance App.pdb
