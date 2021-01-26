@@ -1,15 +1,14 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Finance_App
 {
     public class Invest : Formulas
     {
-        public Invest(double p, double r, int t, bool ctmr, bool ctmt)
+        private double presentValue;
+
+        public Invest(double presentValue, double p, double r, int t, bool ctmr, bool ctmt)
         {
+            this.presentValue = presentValue;
             this.p = p;
             this.r = r;
             this.t = t;
@@ -41,11 +40,9 @@ namespace Finance_App
         /// <returns>Future value with Simple Interest</returns>
         public double FutureValueWithSimpleInterest(double p, double r, int t)
         {
-
             CheckTimePeriod(ref r, ref t);
             double rDouble = MathLib.ConvertToDecimal(r);
             return p * (1 + rDouble * t);
-
         }
 
         /// <summary>
@@ -55,7 +52,7 @@ namespace Finance_App
         /// <param name="r">rate</param>
         /// <param name="time">time</param>
         /// <returns>compound interes</returns>
-        public double CompoundInterest(double p, double r, int time)
+        public double CompoundInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
             double rDouble = MathLib.ConvertToDecimal(r);
@@ -70,7 +67,7 @@ namespace Finance_App
         /// <param name="r">rate</param>
         /// <param name="time">time</param>
         /// <returns>compound interets</returns>
-        public double FutureValueWithCompoundInterest(double p, double r, int time)
+        public double FutureValueWithCompoundInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
             double rDouble = MathLib.ConvertToDecimal(r);
@@ -90,6 +87,11 @@ namespace Finance_App
             double rDouble = MathLib.ConvertToDecimal(r);
             double num = (Math.Pow(1 + rDouble, t)) - 1;
             return p * (num / rDouble);
+        }
+
+        public double FutureValue(double presentValue, double p, double r, int t)
+        {
+            return FutureValueOfAnnuity(p, r, t) + FutureValueWithCompoundInterest(presentValue, r, t);
         }
     }
 }

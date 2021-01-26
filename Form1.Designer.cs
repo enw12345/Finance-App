@@ -46,23 +46,23 @@
             this.Borrow_Time_label = new System.Windows.Forms.Label();
             this.Borrow_Calculate_button = new System.Windows.Forms.Button();
             this.Borrow_Calculation_label = new System.Windows.Forms.Label();
-            this.InvestFormulaSelect = new System.Windows.Forms.ComboBox();
-            this.BorrowFormulaSelect = new System.Windows.Forms.ComboBox();
-            this.BorrowSelectFormulaLabel = new System.Windows.Forms.Label();
-            this.InvestSelectFormula = new System.Windows.Forms.Label();
-            this.InvestConvertToMonthsTime = new System.Windows.Forms.CheckBox();
-            this.InvestConvertToMonthsRate = new System.Windows.Forms.CheckBox();
-            this.BorrowConvertToMonthsTime = new System.Windows.Forms.CheckBox();
-            this.BorrowConvertToMonthsRate = new System.Windows.Forms.CheckBox();
+            this.InvestInterestYearsMonths = new System.Windows.Forms.ComboBox();
+            this.InvestPeriodYearsMonths = new System.Windows.Forms.ComboBox();
+            this.BorrowInterestYearsMonths = new System.Windows.Forms.ComboBox();
+            this.BorrowPeriodYearsMonths = new System.Windows.Forms.ComboBox();
+            this.PresentValueLabel = new System.Windows.Forms.Label();
+            this.PresentValueTextBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // Principal_textBox
             // 
-            this.Principal_textBox.Location = new System.Drawing.Point(106, 100);
+            this.Principal_textBox.Location = new System.Drawing.Point(115, 88);
             this.Principal_textBox.Name = "Principal_textBox";
             this.Principal_textBox.Size = new System.Drawing.Size(100, 20);
             this.Principal_textBox.TabIndex = 0;
-            this.Principal_textBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
+            this.Principal_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.Principal_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.Principal_textBox.Leave += new System.EventHandler(this.Principal_textBox_Leave);
             // 
             // Invest_label
             // 
@@ -86,26 +86,28 @@
             // 
             // LoanAmount_textBox
             // 
-            this.LoanAmount_textBox.Location = new System.Drawing.Point(605, 99);
+            this.LoanAmount_textBox.Location = new System.Drawing.Point(602, 62);
             this.LoanAmount_textBox.Name = "LoanAmount_textBox";
             this.LoanAmount_textBox.Size = new System.Drawing.Size(100, 20);
             this.LoanAmount_textBox.TabIndex = 3;
-            this.LoanAmount_textBox.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
+            this.LoanAmount_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.LoanAmount_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.LoanAmount_textBox.Leave += new System.EventHandler(this.LoanAmount_textBox_Leave);
             // 
             // Principal_label
             // 
             this.Principal_label.AutoSize = true;
-            this.Principal_label.Location = new System.Drawing.Point(3, 107);
+            this.Principal_label.Location = new System.Drawing.Point(12, 95);
             this.Principal_label.Name = "Principal_label";
-            this.Principal_label.Size = new System.Drawing.Size(86, 13);
+            this.Principal_label.Size = new System.Drawing.Size(89, 13);
             this.Principal_label.TabIndex = 4;
-            this.Principal_label.Text = "Principal Amount";
+            this.Principal_label.Text = "Periodic Payment";
             this.Principal_label.Click += new System.EventHandler(this.Principal_label_Click);
             // 
             // Rate_label
             // 
             this.Rate_label.AutoSize = true;
-            this.Rate_label.Location = new System.Drawing.Point(3, 136);
+            this.Rate_label.Location = new System.Drawing.Point(12, 124);
             this.Rate_label.Name = "Rate_label";
             this.Rate_label.Size = new System.Drawing.Size(68, 13);
             this.Rate_label.TabIndex = 5;
@@ -114,16 +116,18 @@
             // 
             // Rate_textBox
             // 
-            this.Rate_textBox.Location = new System.Drawing.Point(106, 133);
+            this.Rate_textBox.Location = new System.Drawing.Point(115, 121);
             this.Rate_textBox.Name = "Rate_textBox";
             this.Rate_textBox.Size = new System.Drawing.Size(100, 20);
             this.Rate_textBox.TabIndex = 6;
-            this.Rate_textBox.TextChanged += new System.EventHandler(this.Rate_textBox_TextChanged);
+            this.Rate_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.Rate_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.Rate_textBox.Leave += new System.EventHandler(this.Rate_textBox_Leave);
             // 
             // Time_label
             // 
             this.Time_label.AutoSize = true;
-            this.Time_label.Location = new System.Drawing.Point(3, 162);
+            this.Time_label.Location = new System.Drawing.Point(12, 150);
             this.Time_label.Name = "Time_label";
             this.Time_label.Size = new System.Drawing.Size(37, 13);
             this.Time_label.TabIndex = 7;
@@ -132,15 +136,17 @@
             // 
             // Time_textBox
             // 
-            this.Time_textBox.Location = new System.Drawing.Point(106, 162);
+            this.Time_textBox.Location = new System.Drawing.Point(115, 150);
             this.Time_textBox.Name = "Time_textBox";
             this.Time_textBox.Size = new System.Drawing.Size(100, 20);
             this.Time_textBox.TabIndex = 8;
-            this.Time_textBox.TextChanged += new System.EventHandler(this.Time_textBox_TextChanged);
+            this.Time_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.Time_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.Time_textBox.Leave += new System.EventHandler(this.Time_textBox_Leave);
             // 
             // Intrest_Calculate_Button
             // 
-            this.Intrest_Calculate_Button.Location = new System.Drawing.Point(68, 204);
+            this.Intrest_Calculate_Button.Location = new System.Drawing.Point(61, 189);
             this.Intrest_Calculate_Button.Name = "Intrest_Calculate_Button";
             this.Intrest_Calculate_Button.Size = new System.Drawing.Size(75, 23);
             this.Intrest_Calculate_Button.TabIndex = 9;
@@ -151,7 +157,7 @@
             // Calculation_label
             // 
             this.Calculation_label.AutoSize = true;
-            this.Calculation_label.Location = new System.Drawing.Point(65, 262);
+            this.Calculation_label.Location = new System.Drawing.Point(58, 234);
             this.Calculation_label.Name = "Calculation_label";
             this.Calculation_label.Size = new System.Drawing.Size(59, 13);
             this.Calculation_label.TabIndex = 10;
@@ -161,7 +167,7 @@
             // LoanAmount_label
             // 
             this.LoanAmount_label.AutoSize = true;
-            this.LoanAmount_label.Location = new System.Drawing.Point(501, 102);
+            this.LoanAmount_label.Location = new System.Drawing.Point(498, 65);
             this.LoanAmount_label.Name = "LoanAmount_label";
             this.LoanAmount_label.Size = new System.Drawing.Size(70, 13);
             this.LoanAmount_label.TabIndex = 11;
@@ -170,24 +176,28 @@
             // 
             // AnnualRate_textBox
             // 
-            this.AnnualRate_textBox.Location = new System.Drawing.Point(605, 131);
+            this.AnnualRate_textBox.Location = new System.Drawing.Point(602, 94);
             this.AnnualRate_textBox.Name = "AnnualRate_textBox";
             this.AnnualRate_textBox.Size = new System.Drawing.Size(100, 20);
             this.AnnualRate_textBox.TabIndex = 12;
-            this.AnnualRate_textBox.TextChanged += new System.EventHandler(this.textBox1_TextChanged_1);
+            this.AnnualRate_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.AnnualRate_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.AnnualRate_textBox.Leave += new System.EventHandler(this.AnnualRate_textBox_Leave);
             // 
             // n_textBox
             // 
-            this.n_textBox.Location = new System.Drawing.Point(605, 161);
+            this.n_textBox.Location = new System.Drawing.Point(602, 124);
             this.n_textBox.Name = "n_textBox";
             this.n_textBox.Size = new System.Drawing.Size(100, 20);
             this.n_textBox.TabIndex = 13;
-            this.n_textBox.TextChanged += new System.EventHandler(this.textBox3_TextChanged);
+            this.n_textBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.n_textBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.n_textBox.Leave += new System.EventHandler(this.n_textBox_Leave);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(501, 135);
+            this.label3.Location = new System.Drawing.Point(498, 98);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(68, 13);
             this.label3.TabIndex = 14;
@@ -196,7 +206,7 @@
             // Borrow_Time_label
             // 
             this.Borrow_Time_label.AutoSize = true;
-            this.Borrow_Time_label.Location = new System.Drawing.Point(501, 164);
+            this.Borrow_Time_label.Location = new System.Drawing.Point(498, 127);
             this.Borrow_Time_label.Name = "Borrow_Time_label";
             this.Borrow_Time_label.Size = new System.Drawing.Size(37, 13);
             this.Borrow_Time_label.TabIndex = 15;
@@ -205,7 +215,7 @@
             // 
             // Borrow_Calculate_button
             // 
-            this.Borrow_Calculate_button.Location = new System.Drawing.Point(582, 204);
+            this.Borrow_Calculate_button.Location = new System.Drawing.Point(573, 189);
             this.Borrow_Calculate_button.Name = "Borrow_Calculate_button";
             this.Borrow_Calculate_button.Size = new System.Drawing.Size(75, 23);
             this.Borrow_Calculate_button.TabIndex = 16;
@@ -216,113 +226,92 @@
             // Borrow_Calculation_label
             // 
             this.Borrow_Calculation_label.AutoSize = true;
-            this.Borrow_Calculation_label.Location = new System.Drawing.Point(579, 262);
+            this.Borrow_Calculation_label.Location = new System.Drawing.Point(579, 234);
             this.Borrow_Calculation_label.Name = "Borrow_Calculation_label";
             this.Borrow_Calculation_label.Size = new System.Drawing.Size(59, 13);
             this.Borrow_Calculation_label.TabIndex = 17;
             this.Borrow_Calculation_label.Text = "Calculation";
             // 
-            // InvestFormulaSelect
+            // InvestInterestYearsMonths
             // 
-            this.InvestFormulaSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.InvestFormulaSelect.FormattingEnabled = true;
-            this.InvestFormulaSelect.Items.AddRange(new object[] {
-            "Compound Interest",
-            "Compound Interest Future Value",
-            "Future Value Of Annuity",
-            "Simple Interest",
-            "Simple Interest Future Value"});
-            this.InvestFormulaSelect.Location = new System.Drawing.Point(106, 70);
-            this.InvestFormulaSelect.Name = "InvestFormulaSelect";
-            this.InvestFormulaSelect.Size = new System.Drawing.Size(155, 21);
-            this.InvestFormulaSelect.Sorted = true;
-            this.InvestFormulaSelect.TabIndex = 22;
-            this.InvestFormulaSelect.SelectedIndexChanged += new System.EventHandler(this.comboBox1_SelectedIndexChanged);
+            this.InvestInterestYearsMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.InvestInterestYearsMonths.FormattingEnabled = true;
+            this.InvestInterestYearsMonths.Items.AddRange(new object[] {
+            "Years",
+            "Months"});
+            this.InvestInterestYearsMonths.Location = new System.Drawing.Point(221, 121);
+            this.InvestInterestYearsMonths.Name = "InvestInterestYearsMonths";
+            this.InvestInterestYearsMonths.Size = new System.Drawing.Size(121, 21);
+            this.InvestInterestYearsMonths.TabIndex = 26;
+            this.InvestInterestYearsMonths.SelectedIndexChanged += new System.EventHandler(this.InvestInterestYearsMonths_SelectedIndexChanged);
             // 
-            // BorrowFormulaSelect
+            // InvestPeriodYearsMonths
             // 
-            this.BorrowFormulaSelect.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.BorrowFormulaSelect.FormattingEnabled = true;
-            this.BorrowFormulaSelect.Items.AddRange(new object[] {
-            "Amortized Loan Payment"});
-            this.BorrowFormulaSelect.Location = new System.Drawing.Point(605, 65);
-            this.BorrowFormulaSelect.Name = "BorrowFormulaSelect";
-            this.BorrowFormulaSelect.Size = new System.Drawing.Size(155, 21);
-            this.BorrowFormulaSelect.TabIndex = 23;
+            this.InvestPeriodYearsMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.InvestPeriodYearsMonths.FormattingEnabled = true;
+            this.InvestPeriodYearsMonths.Items.AddRange(new object[] {
+            "Years",
+            "Months"});
+            this.InvestPeriodYearsMonths.Location = new System.Drawing.Point(221, 150);
+            this.InvestPeriodYearsMonths.Name = "InvestPeriodYearsMonths";
+            this.InvestPeriodYearsMonths.Size = new System.Drawing.Size(121, 21);
+            this.InvestPeriodYearsMonths.TabIndex = 27;
             // 
-            // BorrowSelectFormulaLabel
+            // BorrowInterestYearsMonths
             // 
-            this.BorrowSelectFormulaLabel.AutoSize = true;
-            this.BorrowSelectFormulaLabel.Location = new System.Drawing.Point(499, 73);
-            this.BorrowSelectFormulaLabel.Name = "BorrowSelectFormulaLabel";
-            this.BorrowSelectFormulaLabel.Size = new System.Drawing.Size(77, 13);
-            this.BorrowSelectFormulaLabel.TabIndex = 24;
-            this.BorrowSelectFormulaLabel.Text = "Select Formula";
+            this.BorrowInterestYearsMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BorrowInterestYearsMonths.FormattingEnabled = true;
+            this.BorrowInterestYearsMonths.Items.AddRange(new object[] {
+            "Years",
+            "Months"});
+            this.BorrowInterestYearsMonths.Location = new System.Drawing.Point(708, 93);
+            this.BorrowInterestYearsMonths.Name = "BorrowInterestYearsMonths";
+            this.BorrowInterestYearsMonths.Size = new System.Drawing.Size(121, 21);
+            this.BorrowInterestYearsMonths.TabIndex = 28;
             // 
-            // InvestSelectFormula
+            // BorrowPeriodYearsMonths
             // 
-            this.InvestSelectFormula.AutoSize = true;
-            this.InvestSelectFormula.Location = new System.Drawing.Point(3, 73);
-            this.InvestSelectFormula.Name = "InvestSelectFormula";
-            this.InvestSelectFormula.Size = new System.Drawing.Size(77, 13);
-            this.InvestSelectFormula.TabIndex = 25;
-            this.InvestSelectFormula.Text = "Select Formula";
+            this.BorrowPeriodYearsMonths.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.BorrowPeriodYearsMonths.FormattingEnabled = true;
+            this.BorrowPeriodYearsMonths.Items.AddRange(new object[] {
+            "Years",
+            "Months"});
+            this.BorrowPeriodYearsMonths.Location = new System.Drawing.Point(708, 124);
+            this.BorrowPeriodYearsMonths.Name = "BorrowPeriodYearsMonths";
+            this.BorrowPeriodYearsMonths.Size = new System.Drawing.Size(121, 21);
+            this.BorrowPeriodYearsMonths.TabIndex = 29;
             // 
-            // InvestConvertToMonthsTime
+            // PresentValueLabel
             // 
-            this.InvestConvertToMonthsTime.AutoSize = true;
-            this.InvestConvertToMonthsTime.Location = new System.Drawing.Point(212, 165);
-            this.InvestConvertToMonthsTime.Name = "InvestConvertToMonthsTime";
-            this.InvestConvertToMonthsTime.Size = new System.Drawing.Size(114, 17);
-            this.InvestConvertToMonthsTime.TabIndex = 26;
-            this.InvestConvertToMonthsTime.Text = "Convert to monthly";
-            this.InvestConvertToMonthsTime.UseVisualStyleBackColor = true;
-            this.InvestConvertToMonthsTime.CheckedChanged += new System.EventHandler(this.InvestConvertToMonthsTime_CheckedChanged);
+            this.PresentValueLabel.AutoSize = true;
+            this.PresentValueLabel.Location = new System.Drawing.Point(12, 65);
+            this.PresentValueLabel.Name = "PresentValueLabel";
+            this.PresentValueLabel.Size = new System.Drawing.Size(73, 13);
+            this.PresentValueLabel.TabIndex = 30;
+            this.PresentValueLabel.Text = "Present Value";
             // 
-            // InvestConvertToMonthsRate
+            // PresentValueTextBox
             // 
-            this.InvestConvertToMonthsRate.AutoSize = true;
-            this.InvestConvertToMonthsRate.Location = new System.Drawing.Point(212, 136);
-            this.InvestConvertToMonthsRate.Name = "InvestConvertToMonthsRate";
-            this.InvestConvertToMonthsRate.Size = new System.Drawing.Size(114, 17);
-            this.InvestConvertToMonthsRate.TabIndex = 27;
-            this.InvestConvertToMonthsRate.Text = "Convert to monthly";
-            this.InvestConvertToMonthsRate.UseVisualStyleBackColor = true;
-            this.InvestConvertToMonthsRate.CheckedChanged += new System.EventHandler(this.InvestConvertToMonthsRate_CheckedChanged);
-            // 
-            // BorrowConvertToMonthsTime
-            // 
-            this.BorrowConvertToMonthsTime.AutoSize = true;
-            this.BorrowConvertToMonthsTime.Location = new System.Drawing.Point(711, 164);
-            this.BorrowConvertToMonthsTime.Name = "BorrowConvertToMonthsTime";
-            this.BorrowConvertToMonthsTime.Size = new System.Drawing.Size(114, 17);
-            this.BorrowConvertToMonthsTime.TabIndex = 28;
-            this.BorrowConvertToMonthsTime.Text = "Convert to monthly";
-            this.BorrowConvertToMonthsTime.UseVisualStyleBackColor = true;
-            // 
-            // BorrowConvertToMonthsRate
-            // 
-            this.BorrowConvertToMonthsRate.AutoSize = true;
-            this.BorrowConvertToMonthsRate.Location = new System.Drawing.Point(712, 135);
-            this.BorrowConvertToMonthsRate.Name = "BorrowConvertToMonthsRate";
-            this.BorrowConvertToMonthsRate.Size = new System.Drawing.Size(114, 17);
-            this.BorrowConvertToMonthsRate.TabIndex = 29;
-            this.BorrowConvertToMonthsRate.Text = "Convert to monthly";
-            this.BorrowConvertToMonthsRate.UseVisualStyleBackColor = true;
+            this.PresentValueTextBox.Location = new System.Drawing.Point(115, 58);
+            this.PresentValueTextBox.Name = "PresentValueTextBox";
+            this.PresentValueTextBox.Size = new System.Drawing.Size(100, 20);
+            this.PresentValueTextBox.TabIndex = 31;
+            this.PresentValueTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Enter);
+            this.PresentValueTextBox.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.enter_pressed);
+            this.PresentValueTextBox.Leave += new System.EventHandler(this.PresentValueTextBox_Leave);
+            this.PresentValueTextBox.MouseHover += new System.EventHandler(this.PresentValueTextBox_MouseHover);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(922, 446);
-            this.Controls.Add(this.BorrowConvertToMonthsRate);
-            this.Controls.Add(this.BorrowConvertToMonthsTime);
-            this.Controls.Add(this.InvestConvertToMonthsRate);
-            this.Controls.Add(this.InvestConvertToMonthsTime);
-            this.Controls.Add(this.InvestSelectFormula);
-            this.Controls.Add(this.BorrowSelectFormulaLabel);
-            this.Controls.Add(this.BorrowFormulaSelect);
-            this.Controls.Add(this.InvestFormulaSelect);
+            this.Controls.Add(this.PresentValueTextBox);
+            this.Controls.Add(this.PresentValueLabel);
+            this.Controls.Add(this.BorrowPeriodYearsMonths);
+            this.Controls.Add(this.BorrowInterestYearsMonths);
+            this.Controls.Add(this.InvestPeriodYearsMonths);
+            this.Controls.Add(this.InvestInterestYearsMonths);
             this.Controls.Add(this.Borrow_Calculation_label);
             this.Controls.Add(this.Borrow_Calculate_button);
             this.Controls.Add(this.Borrow_Time_label);
@@ -369,14 +358,12 @@
         private System.Windows.Forms.Label Borrow_Time_label;
         private System.Windows.Forms.Button Borrow_Calculate_button;
         private System.Windows.Forms.Label Borrow_Calculation_label;
-        private System.Windows.Forms.ComboBox InvestFormulaSelect;
-        private System.Windows.Forms.ComboBox BorrowFormulaSelect;
-        private System.Windows.Forms.Label BorrowSelectFormulaLabel;
-        private System.Windows.Forms.Label InvestSelectFormula;
-        private System.Windows.Forms.CheckBox InvestConvertToMonthsTime;
-        private System.Windows.Forms.CheckBox InvestConvertToMonthsRate;
-        private System.Windows.Forms.CheckBox BorrowConvertToMonthsTime;
-        private System.Windows.Forms.CheckBox BorrowConvertToMonthsRate;
+        private System.Windows.Forms.ComboBox InvestInterestYearsMonths;
+        private System.Windows.Forms.ComboBox InvestPeriodYearsMonths;
+        private System.Windows.Forms.ComboBox BorrowInterestYearsMonths;
+        private System.Windows.Forms.ComboBox BorrowPeriodYearsMonths;
+        private System.Windows.Forms.Label PresentValueLabel;
+        private System.Windows.Forms.TextBox PresentValueTextBox;
     }
 }
 

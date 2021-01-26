@@ -12,7 +12,8 @@ namespace Finance_App
 {
     public partial class Form1 : Form
     {
-        double p;
+        double presentValue;
+        double payment;
         float r;
         int t;
 
@@ -38,45 +39,23 @@ namespace Finance_App
 
         }
 
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            double.TryParse(Principal_textBox.Text, out p);
-        }
-
         private void Intrest_Calculate_Button_Click(object sender, EventArgs e)
         {
+            bool convertRateToMonths = false;
+            bool convertTimeToMonths = false;
 
-            invest = new Invest(p, r, t, InvestConvertToMonthsRate.Checked, InvestConvertToMonthsTime.Checked);
+            if (InvestInterestYearsMonths.Text.Equals("Months"))
+            {
+                convertRateToMonths = true;
+            }
+            if (InvestPeriodYearsMonths.Text.Equals("Months"))
+            {
+                convertTimeToMonths = true;
+            }
 
-            if(InvestFormulaSelect.Text.Equals("Simple Interest"))
-            {
-                Calculation_label.Text = "Your interest will be: \n" + invest.SimpleInterest(p, r, t).ToString("C2");
-            }
-            else if(InvestFormulaSelect.Text.Equals("Compound Interest"))
-            {
-                Calculation_label.Text = "Your interest will be: \n" + invest.CompoundInterest(p, r, t).ToString("C2");
-            }
-            else if(InvestFormulaSelect.Text.Equals("Simple Interest Future Value"))
-            {
-                Calculation_label.Text = "Your ending balance will be: \n" + invest.FutureValueWithSimpleInterest(p, r, t).ToString("C2");
-            }
-            else if(InvestFormulaSelect.Text.Equals("Compound Interest Future Value"))
-            {
-                Calculation_label.Text = "Your ending balance will be: \n" + invest.FutureValueWithCompoundInterest(p, r, t).ToString("C2");
-            }
-            else if(InvestFormulaSelect.Text.Equals("Future Value Of Annuity"))
-            {
-                Calculation_label.Text = "Your ending balance wiill be: \n" + invest.FutureValueOfAnnuity(p, r, t).ToString("C2");
-            }
-            else
-            {
-                Calculation_label.Text = "Please select a formula.";
-            }
-        }
+            invest = new Invest(presentValue, payment, r, t, convertRateToMonths, convertTimeToMonths);
 
-        private void Rate_textBox_TextChanged(object sender, EventArgs e)
-        {
-            float.TryParse(Rate_textBox.Text, out r);
+            Calculation_label.Text = "Your balance will be " + invest.FutureValue(presentValue, payment, r, t).ToString("c2");
         }
 
         private void Time_textBox_TextChanged(object sender, EventArgs e)
@@ -94,16 +73,6 @@ namespace Finance_App
 
         }
 
-        private void textBox2_TextChanged(object sender, EventArgs e)
-        {
-            double.TryParse(LoanAmount_textBox.Text, out a);
-        }
-
-        private void textBox1_TextChanged_1(object sender, EventArgs e)
-        {
-            float.TryParse(AnnualRate_textBox.Text, out rate);
-        }
-
         private void textBox3_TextChanged(object sender, EventArgs e)
         {
             int.TryParse(n_textBox.Text, out n);
@@ -111,12 +80,21 @@ namespace Finance_App
 
         private void Borrow_Calculate_button_Click(object sender, EventArgs e)
         {
-            borrow = new Borrow(a, rate, n, BorrowConvertToMonthsRate.Checked, BorrowConvertToMonthsTime.Checked);
-            if(BorrowFormulaSelect.Text.Equals("Amortized Loan Payment"))
+            bool convertRateToMonths = false;
+            bool convertTimeToMonths = false;
+
+            if (BorrowInterestYearsMonths.Text.Equals("Months"))
             {
-                Borrow_Calculation_label.Text = "You will pay: \n" + borrow.AmortizedLoanPayment(a, rate, n).ToString("C2");
+                convertRateToMonths = true;
             }
-            
+            if (BorrowPeriodYearsMonths.Text.Equals("Months"))
+            {
+                convertTimeToMonths = true;
+            }
+
+            borrow = new Borrow(a, rate, n, convertRateToMonths, convertTimeToMonths);
+
+            Borrow_Calculation_label.Text = "You will pay: \n" + borrow.AmortizedLoanPayment(a, rate, n).ToString("C2");
         }
 
         private void InvestYearsOrMonths_SelectedItemChanged(object sender, EventArgs e)
@@ -146,14 +124,7 @@ namespace Finance_App
 
         private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (InvestFormulaSelect.Text.Equals("Future Value Of Annuity"))
-            {
-                Principal_label.Text = "Periodic Payment";
-            }
-            else
-            {
-                Principal_label.Text = "Principal Amount";
-            }
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -177,6 +148,87 @@ namespace Finance_App
         }
 
         private void Rate_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void InvestInterestYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Enter(object sender, KeyEventArgs e)
+        {
+
+        }
+
+        private void enter_pressed(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void PresentValueTextBox_Leave(object sender, EventArgs e)
+        {
+            double temp;
+            if (double.TryParse(PresentValueTextBox.Text, out temp))
+            {
+                presentValue = temp;
+            }
+            PresentValueTextBox.Text = presentValue.ToString("c2");
+        }
+
+        private void Principal_textBox_Leave(object sender, EventArgs e)
+        {
+            double temp;
+            if (double.TryParse(Principal_textBox.Text, out temp))
+            {
+                payment = temp;
+            }
+
+            Principal_textBox.Text = payment.ToString("c2");
+        }
+
+        private void Rate_textBox_Leave(object sender, EventArgs e)
+        {
+            float temp;
+            if (float.TryParse(Rate_textBox.Text, out temp))
+            {
+                r = temp;
+            }
+            Rate_textBox.Text = r.ToString() + "%";
+        }
+
+        private void LoanAmount_textBox_Leave(object sender, EventArgs e)
+        {
+            double temp;
+            if (double.TryParse(LoanAmount_textBox.Text, out temp))
+            {
+                a = temp;
+            }
+            LoanAmount_textBox.Text = a.ToString("C2");
+        }
+
+        private void AnnualRate_textBox_Leave(object sender, EventArgs e)
+        {
+            float temp;
+            if (float.TryParse(AnnualRate_textBox.Text, out temp))
+            {
+                rate = temp;
+            }
+            AnnualRate_textBox.Text = rate.ToString() + "%";
+        }
+
+        private void Time_textBox_Leave(object sender, EventArgs e)
+        {
+            int.TryParse(Time_textBox.Text, out t);
+        }
+
+        private void n_textBox_Leave(object sender, EventArgs e)
+        {
+            int.TryParse(n_textBox.Text, out n);
+        }
+
+        private void PresentValueTextBox_MouseHover(object sender, EventArgs e)
         {
 
         }

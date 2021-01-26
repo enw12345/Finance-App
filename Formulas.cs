@@ -1,13 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Finance_App
+﻿namespace Finance_App
 {
     public class Formulas
     {
+        protected double presentValue;
         protected double p;
         protected double r;
         protected int t;
