@@ -3,9 +3,9 @@
     public class Formulas
     {
         protected double presentValue;
-        protected double p;
-        protected double r;
-        protected int t;
+        protected double period;
+        protected double rate;
+        protected int time;
         protected bool convertToMonthsRate;
         protected bool convertToMonthsTime;
 

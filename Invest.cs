@@ -4,17 +4,29 @@ namespace Finance_App
 {
     public class Invest : Formulas
     {
-        private double presentValue;
+        private double desiredAmount;
 
-        public Invest(double presentValue, double p, double r, int t, bool ctmr, bool ctmt)
+        public Invest(double pv, double p, double r, int t, bool ctmr, bool ctmt)
         {
-            this.presentValue = presentValue;
-            this.p = p;
-            this.r = r;
-            this.t = t;
+            presentValue = pv;
+            period = p;
+            rate = r;
+            time = t;
 
-            this.convertToMonthsRate = ctmr;
-            this.convertToMonthsTime = ctmt;
+            convertToMonthsRate = ctmr;
+            convertToMonthsTime = ctmt;
+        }
+
+        public Invest(double da, double pv, double p, double r, int t, bool ctmr, bool ctmt)
+        {
+            desiredAmount = da;
+            presentValue = pv;
+            period = p;
+            rate = r;
+            time = t;
+
+            convertToMonthsRate = ctmr;
+            convertToMonthsTime = ctmt;
         }
 
         /// <summary>
@@ -27,8 +39,8 @@ namespace Finance_App
         public double SimpleInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            return p * rDouble * t;
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            return p * rateDecimal * t;
         }
 
         /// <summary>
@@ -41,8 +53,8 @@ namespace Finance_App
         public double FutureValueWithSimpleInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            return p * (1 + rDouble * t);
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            return p * (1 + rateDecimal * t);
         }
 
         /// <summary>
@@ -55,8 +67,8 @@ namespace Finance_App
         public double CompoundInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            double a = Math.Pow((1 + rDouble), t);
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            double a = Math.Pow((1 + rateDecimal), t);
             return p * (a - 1);
         }
 
@@ -70,8 +82,8 @@ namespace Finance_App
         public double FutureValueWithCompoundInterest(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            return p * Math.Pow((1 + rDouble), t);
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            return p * Math.Pow((1 + rateDecimal), t);
         }
 
         /// <summary>
@@ -84,14 +96,22 @@ namespace Finance_App
         public double FutureValueOfAnnuity(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            double num = (Math.Pow(1 + rDouble, t)) - 1;
-            return p * (num / rDouble);
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            double num = (Math.Pow(1 + rateDecimal, t)) - 1;
+            return p * (num / rateDecimal);
         }
 
         public double FutureValue(double presentValue, double p, double r, int t)
         {
             return FutureValueOfAnnuity(p, r, t) + FutureValueWithCompoundInterest(presentValue, r, t);
+        }
+
+        public double GetPeriod(double desiredAmount, double presentValue, double r, int t)
+        {
+            CheckTimePeriod(ref r, ref t);
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            double a = Math.Pow(1 + rateDecimal, t);
+            return rateDecimal * (desiredAmount - presentValue * a) / (a - 1);
         }
     }
 }

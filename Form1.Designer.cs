@@ -55,6 +55,10 @@
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.InvestTab = new System.Windows.Forms.TabPage();
             this.BorrowTab = new System.Windows.Forms.TabPage();
+            this.HowMuchButton = new System.Windows.Forms.Button();
+            this.HowMuchLabel = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.DesiredAmountTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.InvestTab.SuspendLayout();
             this.BorrowTab.SuspendLayout();
@@ -89,9 +93,10 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(103, 15);
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(552, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(40, 13);
+            this.label2.Size = new System.Drawing.Size(106, 31);
             this.label2.TabIndex = 2;
             this.label2.Text = "Borrow";
             this.label2.Click += new System.EventHandler(this.label2_Click);
@@ -360,6 +365,10 @@
             // 
             // InvestTab
             // 
+            this.InvestTab.Controls.Add(this.DesiredAmountTextBox);
+            this.InvestTab.Controls.Add(this.label1);
+            this.InvestTab.Controls.Add(this.HowMuchLabel);
+            this.InvestTab.Controls.Add(this.HowMuchButton);
             this.InvestTab.Controls.Add(this.Intrest_Calculate_Button);
             this.InvestTab.Controls.Add(this.PresentValueTextBox);
             this.InvestTab.Controls.Add(this.Principal_textBox);
@@ -401,6 +410,43 @@
             this.BorrowTab.TabIndex = 1;
             this.BorrowTab.Text = "Borrow";
             this.BorrowTab.UseVisualStyleBackColor = true;
+            // 
+            // HowMuchButton
+            // 
+            this.HowMuchButton.Location = new System.Drawing.Point(417, 202);
+            this.HowMuchButton.Name = "HowMuchButton";
+            this.HowMuchButton.Size = new System.Drawing.Size(75, 23);
+            this.HowMuchButton.TabIndex = 32;
+            this.HowMuchButton.Text = "How Much";
+            this.HowMuchButton.UseVisualStyleBackColor = true;
+            this.HowMuchButton.Click += new System.EventHandler(this.HowMuchButton_Click);
+            // 
+            // HowMuchLabel
+            // 
+            this.HowMuchLabel.AutoSize = true;
+            this.HowMuchLabel.Location = new System.Drawing.Point(414, 247);
+            this.HowMuchLabel.Name = "HowMuchLabel";
+            this.HowMuchLabel.Size = new System.Drawing.Size(56, 13);
+            this.HowMuchLabel.TabIndex = 33;
+            this.HowMuchLabel.Text = "HowMuch";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(414, 143);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(82, 13);
+            this.label1.TabIndex = 34;
+            this.label1.Text = "Desired Amount";
+            // 
+            // DesiredAmountTextBox
+            // 
+            this.DesiredAmountTextBox.Location = new System.Drawing.Point(502, 136);
+            this.DesiredAmountTextBox.Name = "DesiredAmountTextBox";
+            this.DesiredAmountTextBox.Size = new System.Drawing.Size(100, 20);
+            this.DesiredAmountTextBox.TabIndex = 35;
+            this.DesiredAmountTextBox.TextChanged += new System.EventHandler(this.DesiredAmountTextBox_TextChanged);
+            this.DesiredAmountTextBox.Leave += new System.EventHandler(this.DesiredAmountTextBox_Leave);
             // 
             // Form1
             // 
@@ -449,6 +495,10 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage InvestTab;
         private System.Windows.Forms.TabPage BorrowTab;
+        private System.Windows.Forms.Label HowMuchLabel;
+        private System.Windows.Forms.Button HowMuchButton;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox DesiredAmountTextBox;
     }
 }
 

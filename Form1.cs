@@ -15,6 +15,7 @@ namespace Finance_App
     {
         double presentValue;
         double payment;
+        double desiredAmount;
         float r;
         int t;
 
@@ -24,8 +25,6 @@ namespace Finance_App
 
         public Invest invest;
         public Borrow borrow;
-
-        IFormatProvider formatProvider;
 
         public Form1()
         {
@@ -304,6 +303,41 @@ namespace Finance_App
         private void PresentValueLabel_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void HowMuchButton_Click(object sender, EventArgs e)
+        {
+            bool convertRateToMonths = false;
+            bool convertTimeToMonths = false;
+
+            if (InvestInterestYearsMonths.Text.Equals("Months"))
+            {
+                convertRateToMonths = true;
+            }
+            if (InvestPeriodYearsMonths.Text.Equals("Months"))
+            {
+                convertTimeToMonths = true;
+            }
+
+            invest = new Invest(desiredAmount, presentValue, payment, r, t, convertRateToMonths, convertTimeToMonths);
+
+            HowMuchLabel.Text = "You need to save " + invest.GetPeriod(desiredAmount, presentValue, r, t).ToString("c2") + (convertTimeToMonths ? " a month.": " a year.");
+        }
+
+        private void DesiredAmountTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DesiredAmountTextBox_Leave(object sender, EventArgs e)
+        {
+            double temp;
+            if (double.TryParse(DesiredAmountTextBox.Text, out temp))
+            {
+                desiredAmount = temp;
+            }
+
+            DesiredAmountTextBox.Text = desiredAmount.ToString("c2");
         }
     }
 }

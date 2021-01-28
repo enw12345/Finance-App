@@ -6,20 +6,20 @@ namespace Finance_App
     {
         public Borrow(double p, double r, int t, bool ctmr, bool ctmt)
         {
-            this.p = p;
-            this.r = r;
-            this.t = t;
+            period = p;
+            rate = r;
+            time = t;
 
-            this.convertToMonthsRate = ctmr;
-            this.convertToMonthsTime = ctmt;
+            convertToMonthsRate = ctmr;
+            convertToMonthsTime = ctmt;
         }
 
         public double AmortizedLoanPayment(double p, double r, int t)
         {
             CheckTimePeriod(ref r, ref t);
-            double rDouble = MathLib.ConvertToDecimal(r);
-            double b2 = Math.Pow(1 + rDouble, t);
-            return p / ((b2 - 1) / (rDouble * b2));
+            double rateDecimal = MathLib.ConvertToDecimal(r);
+            double b2 = Math.Pow(1 + rateDecimal, t);
+            return p / ((b2 - 1) / (rateDecimal * b2));
         }
 
         public double InterestOnlyLoanPayment(double a, float rate, int n)
