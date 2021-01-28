@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Globalization;
 
 namespace Finance_App
 {
@@ -17,12 +18,14 @@ namespace Finance_App
         float r;
         int t;
 
-        double a;
+        double loanAmount;
         float rate;
         int n;
 
         public Invest invest;
         public Borrow borrow;
+
+        IFormatProvider formatProvider;
 
         public Form1()
         {
@@ -92,9 +95,9 @@ namespace Finance_App
                 convertTimeToMonths = true;
             }
 
-            borrow = new Borrow(a, rate, n, convertRateToMonths, convertTimeToMonths);
+            borrow = new Borrow(loanAmount, rate, n, convertRateToMonths, convertTimeToMonths);
 
-            Borrow_Calculation_label.Text = "You will pay: \n" + borrow.AmortizedLoanPayment(a, rate, n).ToString("C2");
+            Borrow_Calculation_label.Text = "You will pay: \n" + borrow.AmortizedLoanPayment(loanAmount, rate, n).ToString("C2");
         }
 
         private void InvestYearsOrMonths_SelectedItemChanged(object sender, EventArgs e)
@@ -203,9 +206,9 @@ namespace Finance_App
             double temp;
             if (double.TryParse(LoanAmount_textBox.Text, out temp))
             {
-                a = temp;
+                loanAmount = temp;
             }
-            LoanAmount_textBox.Text = a.ToString("C2");
+            LoanAmount_textBox.Text = loanAmount.ToString("C2");
         }
 
         private void AnnualRate_textBox_Leave(object sender, EventArgs e)
@@ -229,6 +232,76 @@ namespace Finance_App
         }
 
         private void PresentValueTextBox_MouseHover(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PresentValueTextBox_MouseEnter(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void PresentValueTextBox_Enter(object sender, EventArgs e)
+        {
+            PresentValueTextBox.Text = presentValue.ToString();
+        }
+
+        private void Principal_textBox_Enter(object sender, EventArgs e)
+        {
+            Principal_textBox.Text = payment.ToString();
+        }
+
+        private void Rate_textBox_Enter(object sender, EventArgs e)
+        {
+            Rate_textBox.Text = r.ToString();
+        }
+
+        private void LoanAmount_textBox_Enter(object sender, EventArgs e)
+        {
+            LoanAmount_textBox.Text = loanAmount.ToString();
+        }
+
+        private void AnnualRate_textBox_Enter(object sender, EventArgs e)
+        {
+            AnnualRate_textBox.Text = rate.ToString();
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void LoanAmount_textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AnnualRate_textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void n_textBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BorrowInterestYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void BorrowPeriodYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Borrow_Calculation_label_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void PresentValueLabel_Click(object sender, EventArgs e)
         {
 
         }
