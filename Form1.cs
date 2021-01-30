@@ -31,16 +31,6 @@ namespace Finance_App
             InitializeComponent();
         }
 
-        private void label2_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void Intrest_Calculate_Button_Click(object sender, EventArgs e)
         {
             bool convertRateToMonths = false;
@@ -49,10 +39,6 @@ namespace Finance_App
             if (InvestInterestYearsMonths.Text.Equals("Months"))
             {
                 convertRateToMonths = true;
-            }
-            if (InvestPeriodYearsMonths.Text.Equals("Months"))
-            {
-                convertTimeToMonths = true;
             }
 
             invest = new Invest(presentValue, payment, r, t, convertRateToMonths, convertTimeToMonths);
@@ -63,16 +49,6 @@ namespace Finance_App
         private void Time_textBox_TextChanged(object sender, EventArgs e)
         {
             int.TryParse(Time_textBox.Text, out t);
-        }
-
-        private void Calculation_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label1_Click_1(object sender, EventArgs e)
-        {
-
         }
 
         private void textBox3_TextChanged(object sender, EventArgs e)
@@ -89,84 +65,10 @@ namespace Finance_App
             {
                 convertRateToMonths = true;
             }
-            if (BorrowPeriodYearsMonths.Text.Equals("Months"))
-            {
-                convertTimeToMonths = true;
-            }
 
             borrow = new Borrow(loanAmount, rate, n, convertRateToMonths, convertTimeToMonths);
 
             Borrow_Calculation_label.Text = "You will pay: \n" + borrow.AmortizedLoanPayment(loanAmount, rate, n).ToString("C2");
-        }
-
-        private void InvestYearsOrMonths_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BorrowYearsOrMonths_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Time_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Borrow_Time_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void domainUpDown1_SelectedItemChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Form1_Load(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Principal_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InvestConvertToMonthsTime_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InvestConvertToMonthsRate_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Rate_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InvestInterestYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Enter(object sender, KeyEventArgs e)
-        {
-
-        }
-
-        private void enter_pressed(object sender, KeyPressEventArgs e)
-        {
-
         }
 
         private void PresentValueTextBox_Leave(object sender, EventArgs e)
@@ -230,16 +132,6 @@ namespace Finance_App
             int.TryParse(n_textBox.Text, out n);
         }
 
-        private void PresentValueTextBox_MouseHover(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PresentValueTextBox_MouseEnter(object sender, EventArgs e)
-        {
-            
-        }
-
         private void PresentValueTextBox_Enter(object sender, EventArgs e)
         {
             PresentValueTextBox.Text = presentValue.ToString();
@@ -265,68 +157,19 @@ namespace Finance_App
             AnnualRate_textBox.Text = rate.ToString();
         }
 
-        private void label3_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void LoanAmount_textBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void AnnualRate_textBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void n_textBox_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BorrowInterestYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void BorrowPeriodYearsMonths_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void Borrow_Calculation_label_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void PresentValueLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void HowMuchButton_Click(object sender, EventArgs e)
         {
             bool convertRateToMonths = false;
             bool convertTimeToMonths = false;
 
-            if (InvestInterestYearsMonths.Text.Equals("Months"))
+            if (InvestInterestYearsMonths.Text.Equals("Per Month"))
             {
                 convertRateToMonths = true;
-            }
-            if (InvestPeriodYearsMonths.Text.Equals("Months"))
-            {
-                convertTimeToMonths = true;
             }
 
             invest = new Invest(desiredAmount, presentValue, payment, r, t, convertRateToMonths, convertTimeToMonths);
 
-            HowMuchLabel.Text = "You need to save " + invest.GetPeriod(desiredAmount, presentValue, r, t).ToString("c2") + (convertTimeToMonths ? " a month.": " a year.");
-        }
-
-        private void DesiredAmountTextBox_TextChanged(object sender, EventArgs e)
-        {
-
+            HowMuchLabel.Text = "You need to save " + invest.HowMuchToSave(desiredAmount, presentValue, r, t).ToString("c2") + (convertTimeToMonths ? " a month.": " a year.");
         }
 
         private void DesiredAmountTextBox_Leave(object sender, EventArgs e)

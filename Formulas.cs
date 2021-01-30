@@ -9,10 +9,9 @@
         protected bool convertToMonthsRate;
         protected bool convertToMonthsTime;
 
-        protected void CheckTimePeriod(ref double r, ref int t)
+        protected void CheckTimePeriod(ref double r)
         {
             if (this.convertToMonthsRate) { r = MathLib.ConvertToMonthlyRate(r); }
-            if (this.convertToMonthsTime) { t = MathLib.ConvertToMonths(t); }
         }
     }
 }

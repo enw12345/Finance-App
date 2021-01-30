@@ -16,7 +16,7 @@ namespace Finance_App
 
         public double AmortizedLoanPayment(double p, double r, int t)
         {
-            CheckTimePeriod(ref r, ref t);
+            CheckTimePeriod(ref r);
             double rateDecimal = MathLib.ConvertToDecimal(r);
             double b2 = Math.Pow(1 + rateDecimal, t);
             return p / ((b2 - 1) / (rateDecimal * b2));
