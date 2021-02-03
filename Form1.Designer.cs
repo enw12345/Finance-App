@@ -51,13 +51,13 @@
             this.PresentValueTextBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.InvestTab = new System.Windows.Forms.TabPage();
+            this.DesiredAmount_label = new System.Windows.Forms.Label();
             this.DesiredAmountTextBox = new System.Windows.Forms.TextBox();
             this.HowMuchLabel = new System.Windows.Forms.Label();
             this.HowMuchButton = new System.Windows.Forms.Button();
             this.BorrowTab = new System.Windows.Forms.TabPage();
             this.label4 = new System.Windows.Forms.Label();
             this.AnnualRate_label = new System.Windows.Forms.Label();
-            this.DesiredAmount_label = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.InvestTab.SuspendLayout();
             this.BorrowTab.SuspendLayout();
@@ -152,7 +152,7 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.Intrest_Calculate_Button.Location = new System.Drawing.Point(122, 202);
             this.Intrest_Calculate_Button.Name = "Intrest_Calculate_Button";
-            this.Intrest_Calculate_Button.Size = new System.Drawing.Size(75, 23);
+            this.Intrest_Calculate_Button.Size = new System.Drawing.Size(75, 21);
             this.Intrest_Calculate_Button.TabIndex = 9;
             this.Intrest_Calculate_Button.Text = "Calculate";
             this.Intrest_Calculate_Button.UseVisualStyleBackColor = true;
@@ -289,10 +289,12 @@
             this.tabControl1.Controls.Add(this.InvestTab);
             this.tabControl1.Controls.Add(this.BorrowTab);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.ItemSize = new System.Drawing.Size(500, 20);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(1112, 584);
+            this.tabControl1.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
             this.tabControl1.TabIndex = 32;
             // 
             // InvestTab
@@ -313,13 +315,22 @@
             this.InvestTab.Controls.Add(this.Time_label);
             this.InvestTab.Controls.Add(this.Time_textBox);
             this.InvestTab.Controls.Add(this.Calculation_label);
-            this.InvestTab.Location = new System.Drawing.Point(4, 22);
+            this.InvestTab.Location = new System.Drawing.Point(4, 24);
             this.InvestTab.Name = "InvestTab";
             this.InvestTab.Padding = new System.Windows.Forms.Padding(3);
-            this.InvestTab.Size = new System.Drawing.Size(1104, 558);
+            this.InvestTab.Size = new System.Drawing.Size(1104, 556);
             this.InvestTab.TabIndex = 0;
             this.InvestTab.Text = "Invest";
             this.InvestTab.UseVisualStyleBackColor = true;
+            // 
+            // DesiredAmount_label
+            // 
+            this.DesiredAmount_label.AutoSize = true;
+            this.DesiredAmount_label.Location = new System.Drawing.Point(414, 143);
+            this.DesiredAmount_label.Name = "DesiredAmount_label";
+            this.DesiredAmount_label.Size = new System.Drawing.Size(82, 13);
+            this.DesiredAmount_label.TabIndex = 36;
+            this.DesiredAmount_label.Text = "Desired Amount";
             // 
             // DesiredAmountTextBox
             // 
@@ -361,10 +372,10 @@
             this.BorrowTab.Controls.Add(this.AnnualRate_textBox);
             this.BorrowTab.Controls.Add(this.Borrow_Time_label);
             this.BorrowTab.Controls.Add(this.n_textBox);
-            this.BorrowTab.Location = new System.Drawing.Point(4, 22);
+            this.BorrowTab.Location = new System.Drawing.Point(4, 24);
             this.BorrowTab.Name = "BorrowTab";
             this.BorrowTab.Padding = new System.Windows.Forms.Padding(3);
-            this.BorrowTab.Size = new System.Drawing.Size(1104, 558);
+            this.BorrowTab.Size = new System.Drawing.Size(1104, 556);
             this.BorrowTab.TabIndex = 1;
             this.BorrowTab.Text = "Borrow";
             this.BorrowTab.UseVisualStyleBackColor = true;
@@ -387,15 +398,6 @@
             this.AnnualRate_label.Size = new System.Drawing.Size(66, 13);
             this.AnnualRate_label.TabIndex = 30;
             this.AnnualRate_label.Text = "Annual Rate";
-            // 
-            // DesiredAmount_label
-            // 
-            this.DesiredAmount_label.AutoSize = true;
-            this.DesiredAmount_label.Location = new System.Drawing.Point(414, 143);
-            this.DesiredAmount_label.Name = "DesiredAmount_label";
-            this.DesiredAmount_label.Size = new System.Drawing.Size(82, 13);
-            this.DesiredAmount_label.TabIndex = 36;
-            this.DesiredAmount_label.Text = "Desired Amount";
             // 
             // Form1
             // 
